@@ -11,9 +11,9 @@ Test ints greater than 0 (shouldn't raise error or return anything)
 ::
      >>> bg = BaseGeometry()
      >>> bg.integer_validator("checkme", 999)
-	 
-	 >>> bg = BaseGeometry()
-	 >>> bg.integer_validator("age", True)
+         
+     >>> bg = BaseGeometry()
+     >>> bg.integer_validator("age", True)
 
 FAIL CASES:
 ==========
@@ -21,20 +21,20 @@ Test ``BaseGeometry`` with no attributes and no arguments
 ::
      >>> bg = BaseGeometry()
      >>> type(bg)
-     <type 'instance'>
+     <class '7-base_geometry.BaseGeometry'>
 
      >>> print(bg)
-     <7-base_geometry.BaseGeometry instance at ...>
+     <7-base_geometry.BaseGeometry object at ...>
 
 
 Test non-implemented methods
 ::
      >>> bg = BaseGeometry()
      >>> print(bg.area)
-     <bound method BaseGeometry.area of <7-base_geometry.BaseGeometry instance at ...>>
+     <bound method BaseGeometry.area of <7-base_geometry.BaseGeometry object at ...>>
      
      >>> print(bg.integer_validator)
-     <bound method BaseGeometry.integer_validator of <7-base_geometry.BaseGeometry instance at ...>>
+     <bound method BaseGeometry.integer_validator of <7-base_geometry.BaseGeometry object at ...>>
     
      >>> bg = BaseGeometry()
      >>> bg.area()
@@ -108,10 +108,11 @@ Test invalid number of arguments
      >>> bg.integer_validator()
      Traceback (most recent call last):
      ...
-     TypeError: integer_validator() takes exactly 3 arguments (1 given)
+     TypeError: integer_validator() missing 1 required positional argument: 'value'
 
      >>> bg = BaseGeometry()
      >>> bg.integer_validator("age")
      Traceback (most recent call last):
        ...
-     TypeError: integer_validator() takes exactly 3 arguments (2 given)  
+     TypeError: integer_validator() missing 1 required positional argument: 'value'  
+
