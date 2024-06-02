@@ -25,12 +25,12 @@ class Circle(Shape):
         self.radius = radius
 
     def area(self):
-        """Returns the area of the circle."""
-        return math.pi * self.radius ** 2
+        """Returns the area of the circle, handling negative radius."""
+        return math.pi * abs(self.radius) ** 2
 
     def perimeter(self):
-        """Returns the perimeter of the circle."""
-        return 2 * math.pi * self.radius
+        """Returns the perimeter of the circle, handling negative radius."""
+        return 2 * math.pi * abs(self.radius)
 
 class Rectangle(Shape):
     """Rectangle class inheriting from Shape."""
