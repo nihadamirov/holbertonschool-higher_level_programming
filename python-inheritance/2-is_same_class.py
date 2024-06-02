@@ -4,6 +4,7 @@ Contains method is_same_class
 returns True if object is exactly an instance of specified class
 """
 
+
 def is_same_class(obj, a_class):
     """
     Notes:
@@ -14,3 +15,4 @@ def is_same_class(obj, a_class):
         True if obj is exactly an instance of specified class
     """
     return type(obj) is a_class
+
