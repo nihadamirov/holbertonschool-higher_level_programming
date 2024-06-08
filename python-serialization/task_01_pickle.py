@@ -2,7 +2,7 @@
 import pickle
 
 class CustomObject:
-    """A custom object with attributes name, age, and is_student."""
+    """A custom object with name, age, and student status."""
 
     def __init__(self, name, age, is_student):
         """Initialize a new CustomObject.
@@ -26,23 +26,27 @@ class CustomObject:
         """Serialize the object to a file using pickle.
 
         Args:
-            filename (str): The name of the file to save the object to.
+            filename (str): The name of the file to write the object to.
         """
-        with open(filename, 'wb') as file:
-            pickle.dump(self, file)
+        try:
+            with open(filename, 'wb') as file:
+                pickle.dump(self, file)
+        except (FileNotFoundError, pickle.PickleError) as e:
+            print(f"Serialization error: {e}")
 
     @classmethod
     def deserialize(cls, filename):
         """Deserialize an object from a file using pickle.
 
         Args:
-            filename (str): The name of the file to load the object from.
+            filename (str): The name of the file to read the object from.
 
         Returns:
-            CustomObject: The deserialized object.
+            CustomObject: The deserialized object, or None if deserialization fails.
         """
         try:
             with open(filename, 'rb') as file:
                 return pickle.load(file)
-        except (FileNotFoundError, pickle.PickleError):
+        except (FileNotFoundError, pickle.PickleError) as e:
+            print(f"Deserialization error: {e}")
             return None
