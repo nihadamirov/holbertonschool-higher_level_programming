@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 
 import json
+import logging
 from http.server import BaseHTTPRequestHandler, HTTPServer
+
+logging.basicConfig(level=logging.INFO)
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -36,5 +39,11 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler, port=8000):
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)
-    print(f'Starting httpd server on port {port}...')
-    httpd.serve_forever()
+    logging.info(f'Starting httpd server on port {port}...')
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        pass
+    finally:
+        httpd.server_close()
+        logging.info('Stopping httpd server...')
