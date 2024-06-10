@@ -39,18 +39,14 @@ class TestSimpleAPI(unittest.TestCase):
     def test_status_endpoint(self):
         response = requests.get(self.BASE_URL + '/status')
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.headers['Content-Type'], 'application/json')
-        status = response.json()
-        expected_status = {"status": "OK"}
-        self.assertEqual(status, expected_status)
+        self.assertEqual(response.headers['Content-Type'], 'text/plain')
+        self.assertEqual(response.text, "OK")
 
     def test_404_endpoint(self):
         response = requests.get(self.BASE_URL + '/undefined')
         self.assertEqual(response.status_code, 404)
-        self.assertEqual(response.headers['Content-Type'], 'application/json')
-        error_message = response.json()
-        expected_error_message = {"error": "Endpoint not found"}
-        self.assertEqual(error_message, expected_error_message)
+        self.assertEqual(response.headers['Content-Type'], 'text/plain')
+        self.assertEqual(response.text, "404 Not Found")
 
 if __name__ == '__main__':
     unittest.main()
