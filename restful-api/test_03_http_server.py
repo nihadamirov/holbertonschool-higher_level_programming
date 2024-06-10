@@ -5,7 +5,6 @@ import json
 import requests
 import subprocess
 import time
-import os
 
 class TestSimpleAPI(unittest.TestCase):
 
