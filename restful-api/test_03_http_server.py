@@ -3,10 +3,26 @@
 import unittest
 import json
 import requests
+import subprocess
+import time
+import os
 
 class TestSimpleAPI(unittest.TestCase):
 
     BASE_URL = "http://localhost:8000"
+
+    @classmethod
+    def setUpClass(cls):
+        # Start the server in a subprocess
+        cls.server_process = subprocess.Popen(['python3', 'task_03_http_server.py'])
+        # Wait for the server to start
+        time.sleep(1)
+
+    @classmethod
+    def tearDownClass(cls):
+        # Terminate the server process
+        cls.server_process.terminate()
+        cls.server_process.wait()
 
     def test_root_endpoint(self):
         response = requests.get(self.BASE_URL + '/')
@@ -36,3 +52,6 @@ class TestSimpleAPI(unittest.TestCase):
         error_message = response.json()
         expected_error_message = {"error": "Endpoint not found"}
         self.assertEqual(error_message, expected_error_message)
+
+if __name__ == '__main__':
+    unittest.main()
