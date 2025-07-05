@@ -1,15 +1,7 @@
-<<<<<<< HEAD
--- Prints the full description of the table first_table.
-SHOW CREATE TABLE `first_table`;
-=======
--- Select the table name and creation statement from the information schema
+-- This script prints the full table creation statement for 'first_table'
+-- from the database passed as argument to the mysql command.
 
-SELECT
-   TABLE_NAME AS 'Table',
-   CREATE_TABLE AS 'Create Table'
-FROM
-   information_schema.tables
-WHERE
-   tables_schema = DATABASE()
-   AND table_name = 'first_table';
->>>>>>> 6871f21c26ab738af24c9a73a2ba7c37514572e1
+-- We use SHOW CREATE TABLE to retrieve the full definition of the table,
+-- including column names, types, default values, engine, charset, etc.
+
+SHOW CREATE TABLE first_table;
