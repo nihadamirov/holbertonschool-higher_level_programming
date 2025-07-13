@@ -1,28 +1,15 @@
 #!/usr/bin/python3
-"""
-Takes in a URL, sends a request and displays the body of response
-Handles HTTPError exceptions and prints error codes
-"""
+"""Sends request and handles HTTPError using urllib"""
+import urllib.request
+import urllib.error
+import sys
 
-if __name__ == "__main__":
-    import urllib.request
-    import urllib.error
-    import sys
+url = sys.argv[1]
 
-    # Get URL from command line argument
-    url = sys.argv[1]
+req = urllib.request.Request(url)
 
-    try:
-        # Create request with required header to bypass firewall
-        req = urllib.request.Request(url)
-        req.add_header('cfclearance', 'true')
-
-        # Send request and get response
-        with urllib.request.urlopen(req) as response:
-            # Read and decode response body
-            body = response.read().decode('utf-8')
-            print(body)
-
-    except urllib.error.HTTPError as e:
-        # Handle HTTP errors and print error code
-        print("Error code: {}".format(e.code))
+try:
+    with urllib.request.urlopen(req) as response:
+        print(response.read().decode('utf-8'))
+except urllib.error.HTTPError as e:
+    print("Error code: {}".format(e.code))
