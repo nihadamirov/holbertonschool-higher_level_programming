@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-"""Sends request and handles HTTPError using urllib"""
+"""Sends a request and handles HTTPError with urllib"""
 import urllib.request
 import urllib.error
 import sys
 
 url = sys.argv[1]
-
-req = urllib.request.Request(url)
+headers = {'User-Agent': 'Mozilla/5.0'}
+req = urllib.request.Request(url, headers=headers)
 
 try:
     with urllib.request.urlopen(req) as response:
