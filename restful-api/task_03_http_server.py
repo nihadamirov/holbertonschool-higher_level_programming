@@ -5,8 +5,8 @@ Demonstrates basic HTTP server functionality with JSON responses
 """
 
 import http.server
-import socketserver
 import json
+import socketserver
 from urllib.parse import urlparse
 
 
@@ -42,7 +42,7 @@ class SimpleAPIHandler(http.server.BaseHTTPRequestHandler):
         Returns a simple greeting message
         """
         self.send_response(200)
-        self.send_header('Content-type', 'text/plain')
+        self.send_header('Content-Type', 'text/plain')
         self.end_headers()
 
         message = "Hello, this is a simple API!"
@@ -54,7 +54,7 @@ class SimpleAPIHandler(http.server.BaseHTTPRequestHandler):
         Returns sample JSON data
         """
         self.send_response(200)
-        self.send_header('Content-type', 'application/json')
+        self.send_header('Content-Type', 'application/json')
         self.end_headers()
 
         # Sample dataset as specified in requirements
@@ -74,7 +74,7 @@ class SimpleAPIHandler(http.server.BaseHTTPRequestHandler):
         Returns API status information
         """
         self.send_response(200)
-        self.send_header('Content-type', 'text/plain')
+        self.send_header('Content-Type', 'text/plain')
         self.end_headers()
 
         message = "OK"
@@ -86,7 +86,7 @@ class SimpleAPIHandler(http.server.BaseHTTPRequestHandler):
         Returns API information in JSON format
         """
         self.send_response(200)
-        self.send_header('Content-type', 'application/json')
+        self.send_header('Content-Type', 'application/json')
         self.end_headers()
 
         info = {
@@ -103,7 +103,7 @@ class SimpleAPIHandler(http.server.BaseHTTPRequestHandler):
         Returns 404 Not Found status with appropriate message
         """
         self.send_response(404)
-        self.send_header('Content-type', 'text/plain')
+        self.send_header('Content-Type', 'text/plain')
         self.end_headers()
 
         message = "404 Not Found"
