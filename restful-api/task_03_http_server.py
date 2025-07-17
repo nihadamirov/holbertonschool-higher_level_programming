@@ -41,7 +41,7 @@ class MyHandler(http.server.BaseHTTPRequestHandler):
             message = "404 Not Found"
             self.send_header("Content-Length", str(len(message)))
             self.end_headers()
-            self.wfile.write(message.encode('utf-8'))
+            self.wfile.write(message.encode("utf-8"))
 
 
 Handler = MyHandler
