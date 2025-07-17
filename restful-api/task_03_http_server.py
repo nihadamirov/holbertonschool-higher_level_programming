@@ -103,16 +103,11 @@ class SimpleAPIHandler(http.server.BaseHTTPRequestHandler):
         Returns 404 Not Found status with appropriate message
         """
         self.send_response(404)
-        self.send_header('Content-type', 'application/json')
+        self.send_header('Content-type', 'text/plain')
         self.end_headers()
 
-        error_response = {
-            "error": "Endpoint not found",
-            "message": f"The requested endpoint '{self.path}' was not found on this server."
-        }
-
-        json_response = json.dumps(error_response)
-        self.wfile.write(json_response.encode('utf-8'))
+        message = "404 Not Found"
+        self.wfile.write(message.encode('utf-8'))
 
     def log_message(self, format, *args):
         """
@@ -144,5 +139,4 @@ def run_server(port=8000):
 
 
 if __name__ == "__main__":
-    # Start the server on port 8000
     run_server(8000)
