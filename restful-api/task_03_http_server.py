@@ -5,8 +5,8 @@ Demonstrates basic HTTP server functionality with JSON responses
 """
 
 import http.server
-import json
 import socketserver
+import json
 from urllib.parse import urlparse
 
 
@@ -47,6 +47,7 @@ class SimpleAPIHandler(http.server.BaseHTTPRequestHandler):
 
         message = "Hello, this is a simple API!"
         self.wfile.write(message.encode('utf-8'))
+        self.wfile.flush()
 
     def handle_data(self):
         """
@@ -67,6 +68,7 @@ class SimpleAPIHandler(http.server.BaseHTTPRequestHandler):
         # Convert dictionary to JSON string and send response
         json_response = json.dumps(data)
         self.wfile.write(json_response.encode('utf-8'))
+        self.wfile.flush()
 
     def handle_status(self):
         """
@@ -79,6 +81,7 @@ class SimpleAPIHandler(http.server.BaseHTTPRequestHandler):
 
         message = "OK"
         self.wfile.write(message.encode('utf-8'))
+        self.wfile.flush()
 
     def handle_info(self):
         """
@@ -96,6 +99,7 @@ class SimpleAPIHandler(http.server.BaseHTTPRequestHandler):
 
         json_response = json.dumps(info)
         self.wfile.write(json_response.encode('utf-8'))
+        self.wfile.flush()
 
     def handle_404(self):
         """
@@ -108,6 +112,7 @@ class SimpleAPIHandler(http.server.BaseHTTPRequestHandler):
 
         message = "404 Not Found"
         self.wfile.write(message.encode('utf-8'))
+        self.wfile.flush()  # Ensure the response is sent immediately
 
     def log_message(self, format, *args):
         """
